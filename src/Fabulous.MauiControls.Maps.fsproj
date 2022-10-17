@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net7.0;net7.0-ios;net7.0-android;net7.0-maccatalyst</TargetFrameworks>
+        <UseMaui>true</UseMaui>
+        <UseMauiCore>true</UseMauiCore>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageReadmeFile>PackageREADME.md</PackageReadmeFile>
+        <PackageIcon>nuget-icon.png</PackageIcon>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <VersionPrefix>2.0.0</VersionPrefix>
+        <RepositoryUrl>https://github.com/fsharp-mobile/Fabulous.MauiControls.Maps</RepositoryUrl>
+        <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="PackageREADME.md" Pack="true" PackagePath="\" />
+        <None Include="../logo/nuget-icon.png" Pack="true" PackagePath="\" />
+        <Compile Include="Map.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Fabulous.MauiControls" Version="2.1.0-preview.5" />
+        <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.0-rc.1.6683" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+name: Build
+on:
+   push:
+     branches: [ 'main' ]
+     paths-ignore: [ 'docs/**' ]
+
+permissions: write-all
+
+jobs:
+  build:
+    runs-on: macos-latest
+    env:
+      SLN_FILE: NoSamples.sln
+      VERSION: 2.0.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.401
+    - name: Restore
+      run: dotnet restore ${SLN_FILE}
+    - name: Build
+      run: dotnet build -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-restore --configuration Release ${SLN_FILE}
+    - name: Test
+      run: dotnet test -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-build --configuration Release ${SLN_FILE}
+    - name: Pack
+      run: |
+        dotnet pack -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --configuration Release --output nupkgs ${SLN_FILE}
+    - name: Push
+      run: |
+        dotnet nuget push "nupkgs/*.nupkg" -s https://nuget.pkg.github.com/fsharp-mobile/index.json -k ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
