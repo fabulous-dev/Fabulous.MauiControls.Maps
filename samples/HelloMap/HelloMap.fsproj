@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
@@ -16,7 +16,7 @@
 		<ApplicationTitle>HelloMap</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.HelloMap</ApplicationId>
+		<ApplicationId>org.fabulous.maui.HelloMap</ApplicationId>
 		<ApplicationIdGuid>23DD2A32-4AA7-4222-A96E-363929FAFB26</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -100,9 +100,6 @@
 	<ItemGroup>
 		<PackageReference Include="Fabulous.MauiControls" Version="2.1.0-preview.5" />
 		<PackageReference Include="FSharp.Core" Version="6.0.5" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\src\Fabulous.MauiControls.Maps.fsproj" />
 	</ItemGroup>
 

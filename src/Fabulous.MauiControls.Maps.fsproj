@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net7.0;net7.0-ios;net7.0-android;net7.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks>net7.0;net7.0-ios;net7.0-android</TargetFrameworks>
         <UseMaui>true</UseMaui>
         <UseMauiCore>true</UseMauiCore>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -17,6 +17,7 @@
         <None Include="PackageREADME.md" Pack="true" PackagePath="\" />
         <None Include="../logo/nuget-icon.png" Pack="true" PackagePath="\" />
         <Compile Include="Map.fs" />
+        <Compile Include="AppHostBuilderExtensions.fs" />
     </ItemGroup>
 
     <ItemGroup>
