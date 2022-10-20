@@ -7,5 +7,4 @@ open Microsoft.Maui.Controls.Hosting
 [<Extension>]
 type AppHostBuilderExtensions =
     [<Extension>]
-    static member UseFabulousMaps(this: MauiAppBuilder) =
-        this.UseMauiMaps()
+    static member UseFabulousMaps(this: MauiAppBuilder) = this.UseMauiMaps()
