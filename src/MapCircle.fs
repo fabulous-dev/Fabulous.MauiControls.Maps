@@ -24,6 +24,9 @@ module MapCircleBuilders =
 
     type Fabulous.Maui.View with
 
+        /// <summary>A Circle object can be added to a map by instantiating it and adding it to the map's MapElements collection</summary>
+        /// <param name ="center">Location object that defines the center of the circle, in latitude and longitude.</param>
+        /// <param name ="radius">Distance object that defines the radius of the circle in meters, kilometers, or miles.</param>
         static member inline MapCircle<'msg>(center: Location, radius: Distance) =
             WidgetBuilder<'msg, IMapCircle>(
                 MapCircle.WidgetKey,
@@ -33,6 +36,9 @@ module MapCircleBuilders =
 
 [<Extension>]
 type MapCircleModifiers =
+    /// <summary>Set the color within the circle perimeter. If is not specified the stroke will default to transparent.</summary>
+    /// <param name="light">The color within the circle perimeter in the light theme.</param>
+    /// <param name="dark">The color within the circle perimeter in the dark theme.</param>
     [<Extension>]
     static member inline fillColor(this: WidgetBuilder<'msg, #IMapCircle>, light: FabColor, ?dark: FabColor) =
         this.AddScalar(MapCircle.FillColor.WithValue(AppTheme.create light dark))

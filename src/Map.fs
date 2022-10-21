@@ -55,17 +55,16 @@ module Map =
 module MapBuilders =
     type Fabulous.Maui.View with
 
-        /// Defines a Map widget
-        static member inline Map<'msg>(?requestRegion: MapSpan) =
-            match requestRegion with
-            | Some mapSpan ->
-                WidgetBuilder<'msg, IMap>(
-                    Map.WidgetKey,
-                    AttributesBundle(StackList.one (Map.RequestedRegion.WithValue(mapSpan)), ValueNone, ValueNone)
-                )
-            | None ->
-                WidgetBuilder<'msg, IMap>(Map.WidgetKey, AttributesBundle(StackList.empty (), ValueNone, ValueNone))
+        /// <summary>The Map control is a cross-platform view for displaying and annotating maps</summary>
+        /// <param name ="requestRegion">The region of a map to display when a map is loaded can be set by passing a MapSpan.</param>
+        static member inline Map<'msg>(requestRegion: MapSpan) =
+            WidgetBuilder<'msg, IMap>(
+                Map.WidgetKey,
+                AttributesBundle(StackList.one (Map.RequestedRegion.WithValue(requestRegion)), ValueNone, ValueNone)
+            )
 
+        /// <summary>The Map control is a cross-platform view for displaying and annotating maps</summary>
+        /// <param name ="requestRegion">The region of a map to display when a map is loaded can be set by passing a MapSpan.</param>
         static member inline MapWithPins<'msg>(requestRegion: MapSpan) =
             CollectionBuilder<'msg, IMap, IMapPin>(
                 Map.WidgetKey,
@@ -75,30 +74,38 @@ module MapBuilders =
 
 [<Extension>]
 type MapModifiers =
+    /// <summary>Determines whether the map is allowed to zoom.</summary>
     [<Extension>]
     static member inline isZoomEnabled(this: WidgetBuilder<'msg, #IMap>, value: bool) =
         this.AddScalar(Map.IsZoomEnabled.WithValue(value))
 
+    /// <summary>Determines whether the map is allowed to scroll.</summary>
     [<Extension>]
     static member inline isScrollEnabled(this: WidgetBuilder<'msg, #IMap>, value: bool) =
         this.AddScalar(Map.IsScrollEnabled.WithValue(value))
 
+    /// <summary>Indicates the display style of the map.</summary>
     [<Extension>]
     static member inline mapType(this: WidgetBuilder<'msg, #IMap>, value: MapType) =
         this.AddScalar(Map.MapType.WithValue(value))
 
+    /// <summary>Indicates whether the map is showing the user's current location.</summary>
     [<Extension>]
     static member inline isShowingUser(this: WidgetBuilder<'msg, #IMap>, value: bool) =
         this.AddScalar(Map.IsShowingUser.WithValue(value))
 
+    /// <summary>Indicates whether traffic data is overlaid on the map.</summary>
     [<Extension>]
     static member inline isTrafficEnabled(this: WidgetBuilder<'msg, #IMap>, value: bool) =
         this.AddScalar(Map.IsTrafficEnabled.WithValue(value))
 
+    /// <summary>Event that is fired when the user interacts with the map.</summary>
+    /// <param name="onMapClicked">Msg to dispatch when the user interacts with the map.</param>
     [<Extension>]
     static member inline onMapClicked(this: WidgetBuilder<'msg, #IMap>, onMapClicked: Location -> 'msg) =
         this.AddScalar(Map.MapClicked.WithValue(fun args -> onMapClicked args.Location |> box))
 
+    /// <summary>Represents the list of elements on the map, such as polygons, circles and polylines.</summary>
     [<Extension>]
     static member inline mapElements<'msg, 'marker when 'marker :> IMap>(this: WidgetBuilder<'msg, 'marker>) =
         WidgetHelpers.buildAttributeCollection<'msg, 'marker, IMapElement> Map.MapElements this

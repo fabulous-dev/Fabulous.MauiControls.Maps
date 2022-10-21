@@ -16,13 +16,16 @@ module MapElement =
 
     let StrokeWidth = Attributes.defineBindableFloat MapElement.StrokeWidthProperty
 
-
 [<Extension>]
 type MapElementModifiers =
+    /// <summary>Set the line color. If is not specified the stroke will default to black.</summary>
+    /// <param name="light">The color of the line in the light theme.</param>
+    /// <param name="dark">The color of the line in the dark theme.</param>
     [<Extension>]
     static member inline strokeColor(this: WidgetBuilder<'msg, #IMapElement>, light: FabColor, ?dark: FabColor) =
         this.AddScalar(MapElement.StrokeColor.WithValue(AppTheme.create light dark))
 
+    /// <summary>Sets the line width.</summary>
     [<Extension>]
     static member inline strokeWidth(this: WidgetBuilder<'msg, #IMapElement>, value: float) =
         this.AddScalar(MapElement.StrokeWidth.WithValue(value))

@@ -26,8 +26,6 @@ module App =
         | MapClicked _ -> model, Cmd.none
         | MarkerClicked _ -> model, Cmd.none
 
-    let map () = Map()
-
     let mapWithRegion () =
         Map(MapSpan.FromCenterAndRadius(Location(47.640663, -122.1376177), Distance.FromMiles(250.)))
 
@@ -128,21 +126,23 @@ module App =
 
     let view (_: Model) =
         Application(
-            ContentPage(
-                "HelloMap",
-                //map()
-                //mapWithRegion()
-                //mapWithPins()
-                //mapWihCircleElement()
-                //mapWithPolylineElement()
-                mapWithPolygonElement()
-                    .isZoomEnabled(true)
-                    .isScrollEnabled(true)
-                    .mapType(MapType.Street)
-                    .isShowingUser(true)
-                    .isTrafficEnabled(true)
-                    .onMapClicked (MapClicked)
-            )
+            (TabbedPage("HelloMap") {
+                ContentPage("Region", mapWithRegion ())
+                ContentPage("Pins", mapWithPins ())
+                ContentPage("Circle", mapWihCircleElement ())
+                ContentPage("Polyline", mapWithPolylineElement ())
+
+                ContentPage(
+                    "Polygons",
+                    mapWithPolygonElement()
+                        .isZoomEnabled(true)
+                        .isScrollEnabled(true)
+                        .mapType(MapType.Street)
+                        .isShowingUser(true)
+                        .isTrafficEnabled(true)
+                        .onMapClicked (MapClicked)
+                )
+            })
                 .ignoreSafeArea ()
         )
 
