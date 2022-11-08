@@ -16,6 +16,11 @@
     <ItemGroup>
         <None Include="PackageREADME.md" Pack="true" PackagePath="\" />
         <None Include="../logo/nuget-icon.png" Pack="true" PackagePath="\" />
+        <Compile Include="MapElement.fs" />
+        <Compile Include="MapPolygon.fs" />
+        <Compile Include="MapPolyline.fs" />
+        <Compile Include="MapCircle.fs" />
+        <Compile Include="MapPin.fs" />
         <Compile Include="Map.fs" />
         <Compile Include="AppHostBuilderExtensions.fs" />
     </ItemGroup>
