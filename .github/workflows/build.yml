@@ -8,27 +8,27 @@ permissions: write-all
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-12
     env:
       SLN_FILE: NoSamples.sln
-      VERSION: 2.0.0
+      VERSION: 2.1.0
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.100-rc.2.22477.23
+        dotnet-version: 7.0.x
     - name: Install dotnet workload
-      run: dotnet workload install maui maui-ios maui-android maui-tizen
+      run: dotnet workload install maui
     - name: Restore
       run: dotnet restore ${SLN_FILE}
     - name: Build
-      run: dotnet build -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-restore --configuration Release ${SLN_FILE}
+      run: dotnet build ${SLN_FILE} -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-restore --configuration Release
     # - name: Test
-    #   run: dotnet test -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-build --configuration Release ${SLN_FILE}
+    #   run: dotnet test ${SLN_FILE} -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-build --configuration Release
     - name: Pack
       run: |
-        dotnet pack -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --configuration Release --output nupkgs ${SLN_FILE}
+        dotnet pack ${SLN_FILE} -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --configuration Release --output nupkgs
     - name: Push
       run: |
         dotnet nuget push "nupkgs/*.nupkg" -s https://nuget.pkg.github.com/fsharp-mobile/index.json -k ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
