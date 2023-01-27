@@ -7,10 +7,10 @@ open Microsoft.Maui.Controls.Maps
 open Microsoft.Maui.Devices.Sensors
 
 type IMapPin =
-    inherit Fabulous.Maui.IElement
+    inherit IFabElement
 
 module MapPin =
-    let WidgetKey = Widgets.register<Pin> ()
+    let WidgetKey = Widgets.register<Pin>()
 
     let PinType = Attributes.defineBindableWithEquality<PinType> Pin.TypeProperty
 
@@ -24,8 +24,7 @@ module MapPin =
         Attributes.defineEvent<PinClickedEventArgs> "Pin_MarkerClicked" (fun target -> (target :?> Pin).MarkerClicked)
 
     let InfoWindowClicked =
-        Attributes.defineEvent<PinClickedEventArgs> "Pin_InfoWindowClicked" (fun target ->
-            (target :?> Pin).InfoWindowClicked)
+        Attributes.defineEvent<PinClickedEventArgs> "Pin_InfoWindowClicked" (fun target -> (target :?> Pin).InfoWindowClicked)
 
 [<AutoOpen>]
 module MapPinBuilders =

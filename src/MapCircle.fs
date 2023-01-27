@@ -11,7 +11,7 @@ type IMapCircle =
     inherit Fabulous.MauiControls.Maps.IMapElement
 
 module MapCircle =
-    let WidgetKey = Widgets.register<Circle> ()
+    let WidgetKey = Widgets.register<Circle>()
 
     let Center = Attributes.defineBindableWithEquality<Location> Circle.CenterProperty
 
@@ -28,11 +28,7 @@ module MapCircleBuilders =
         /// <param name ="center">Location object that defines the center of the circle, in latitude and longitude.</param>
         /// <param name ="radius">Distance object that defines the radius of the circle in meters, kilometers, or miles.</param>
         static member inline MapCircle<'msg>(center: Location, radius: Distance) =
-            WidgetBuilder<'msg, IMapCircle>(
-                MapCircle.WidgetKey,
-                MapCircle.Center.WithValue(center),
-                MapCircle.Radius.WithValue(radius)
-            )
+            WidgetBuilder<'msg, IMapCircle>(MapCircle.WidgetKey, MapCircle.Center.WithValue(center), MapCircle.Radius.WithValue(radius))
 
 [<Extension>]
 type MapCircleModifiers =

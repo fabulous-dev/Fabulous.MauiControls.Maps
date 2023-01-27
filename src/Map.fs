@@ -10,10 +10,10 @@ open Microsoft.Maui.Maps
 open Microsoft.Maui.Controls.Maps
 
 type IMap =
-    inherit Fabulous.Maui.IView
+    inherit IFabView
 
 module Map =
-    let WidgetKey = Widgets.register<Map> ()
+    let WidgetKey = Widgets.register<Map>()
 
     let MapType =
         Attributes.defineEnum<MapType> "Map_MapType" (fun _ newValueOpt node ->
@@ -58,19 +58,12 @@ module MapBuilders =
         /// <summary>The Map control is a cross-platform view for displaying and annotating maps</summary>
         /// <param name ="requestRegion">The region of a map to display when a map is loaded can be set by passing a MapSpan.</param>
         static member inline Map<'msg>(requestRegion: MapSpan) =
-            WidgetBuilder<'msg, IMap>(
-                Map.WidgetKey,
-                AttributesBundle(StackList.one (Map.RequestedRegion.WithValue(requestRegion)), ValueNone, ValueNone)
-            )
+            WidgetBuilder<'msg, IMap>(Map.WidgetKey, AttributesBundle(StackList.one(Map.RequestedRegion.WithValue(requestRegion)), ValueNone, ValueNone))
 
         /// <summary>The Map control is a cross-platform view for displaying and annotating maps</summary>
         /// <param name ="requestRegion">The region of a map to display when a map is loaded can be set by passing a MapSpan.</param>
         static member inline MapWithPins<'msg>(requestRegion: MapSpan) =
-            CollectionBuilder<'msg, IMap, IMapPin>(
-                Map.WidgetKey,
-                Map.Pins,
-                Map.RequestedRegion.WithValue(requestRegion)
-            )
+            CollectionBuilder<'msg, IMap, IMapPin>(Map.WidgetKey, Map.Pins, Map.RequestedRegion.WithValue(requestRegion))
 
 [<Extension>]
 type MapModifiers =

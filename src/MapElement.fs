@@ -6,10 +6,10 @@ open Fabulous.Maui
 open Microsoft.Maui.Controls.Maps
 
 type IMapElement =
-    inherit Fabulous.Maui.IElement
+    inherit IFabElement
 
 module MapElement =
-    let WidgetKey = Widgets.register<MapElement> ()
+    let WidgetKey = Widgets.register<MapElement>()
 
     let StrokeColor =
         Attributes.defineBindableAppThemeColor MapElement.StrokeColorProperty

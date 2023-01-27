@@ -12,7 +12,7 @@ type IMapPolygon =
     inherit Fabulous.MauiControls.Maps.IMapElement
 
 module MapPolygon =
-    let WidgetKey = Widgets.register<Polygon> ()
+    let WidgetKey = Widgets.register<Polygon>()
 
     let FillColor = Attributes.defineBindableAppThemeColor Polygon.FillColorProperty
 
@@ -34,7 +34,7 @@ module MapPolygonBuilders =
         static member inline MapPolygon<'msg>(geoPaths: Location list) =
             WidgetBuilder<'msg, IMapPolygon>(
                 MapPolygon.WidgetKey,
-                AttributesBundle(StackList.one (MapPolygon.GeoPathList.WithValue(geoPaths)), ValueNone, ValueNone)
+                AttributesBundle(StackList.one(MapPolygon.GeoPathList.WithValue(geoPaths)), ValueNone, ValueNone)
             )
 
 [<Extension>]

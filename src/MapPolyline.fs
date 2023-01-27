@@ -12,7 +12,7 @@ type IMapPolyline =
     inherit Fabulous.MauiControls.Maps.IMapElement
 
 module MapPolyline =
-    let WidgetKey = Widgets.register<Polyline> ()
+    let WidgetKey = Widgets.register<Polyline>()
 
     let GeoPathList =
         Attributes.defineSimpleScalarWithEquality<Location list> "Polyline_GeoPath" (fun _ newValueOpt node ->
@@ -32,7 +32,7 @@ module MapPolylineBuilders =
         static member inline MapPolyline<'msg>(geoPaths: Location list) =
             WidgetBuilder<'msg, IMapPolyline>(
                 MapPolyline.WidgetKey,
-                AttributesBundle(StackList.one (MapPolyline.GeoPathList.WithValue(geoPaths)), ValueNone, ValueNone)
+                AttributesBundle(StackList.one(MapPolyline.GeoPathList.WithValue(geoPaths)), ValueNone, ValueNone)
             )
 
 [<Extension>]
