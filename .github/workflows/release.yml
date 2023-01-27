@@ -48,6 +48,11 @@ jobs:
     - name: Pack
       run: |
         dotnet pack ${SLN_FILE} -p:Version="${MAJOR}.${MINOR}.${PATCH}" --configuration Release --output nupkgs
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Packages
+        path: nupkgs/
     - name: Push
       run: |
         dotnet nuget push "nupkgs/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }} --skip-duplicate
