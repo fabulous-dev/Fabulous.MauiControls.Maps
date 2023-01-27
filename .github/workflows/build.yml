@@ -13,7 +13,14 @@ jobs:
       SLN_FILE: NoSamples.sln
       VERSION: 2.1.0
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout sources
+      uses: actions/checkout@v3
+    - name: Read last version from CHANGELOG.md
+      id: changelog_reader
+      uses: mindsers/changelog-reader-action@v2
+      with:
+        validation_level: warn
+        path: ./CHANGELOG.md
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -24,11 +31,3 @@ jobs:
       run: dotnet restore ${SLN_FILE}
     - name: Build
       run: dotnet build ${SLN_FILE} -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-restore --configuration Release
-    # - name: Test
-    #   run: dotnet test ${SLN_FILE} -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --no-build --configuration Release
-    - name: Pack
-      run: |
-        dotnet pack ${SLN_FILE} -p:Version=${VERSION}-nightly-${GITHUB_RUN_ID} --configuration Release --output nupkgs
-    - name: Push
-      run: |
-        dotnet nuget push "nupkgs/*.nupkg" -s https://nuget.pkg.github.com/fsharp-mobile/index.json -k ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
