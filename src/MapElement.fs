@@ -5,7 +5,7 @@ open Fabulous
 open Fabulous.Maui
 open Microsoft.Maui.Controls.Maps
 
-type IMapElement =
+type IFabMapElement =
     inherit IFabElement
 
 module MapElement =
@@ -22,15 +22,15 @@ type MapElementModifiers =
     /// <param name="light">The color of the line in the light theme.</param>
     /// <param name="dark">The color of the line in the dark theme.</param>
     [<Extension>]
-    static member inline strokeColor(this: WidgetBuilder<'msg, #IMapElement>, light: FabColor, ?dark: FabColor) =
+    static member inline strokeColor(this: WidgetBuilder<'msg, #IFabMapElement>, light: FabColor, ?dark: FabColor) =
         this.AddScalar(MapElement.StrokeColor.WithValue(AppTheme.create light dark))
 
     /// <summary>Sets the line width.</summary>
     [<Extension>]
-    static member inline strokeWidth(this: WidgetBuilder<'msg, #IMapElement>, value: float) =
+    static member inline strokeWidth(this: WidgetBuilder<'msg, #IFabMapElement>, value: float) =
         this.AddScalar(MapElement.StrokeWidth.WithValue(value))
 
     /// <summary>Link a ViewRef to access the direct MapElement control instance</summary>
     [<Extension>]
-    static member inline reference(this: WidgetBuilder<'msg, IMapElement>, value: ViewRef<MapElement>) =
+    static member inline reference(this: WidgetBuilder<'msg, IFabMapElement>, value: ViewRef<MapElement>) =
         this.AddScalar(ViewRefAttributes.ViewRef.WithValue(value.Unbox))
