@@ -1,4 +1,4 @@
-﻿namespace Fabulous.MauiControls.Maps
+﻿namespace Fabulous.Maui.Maps
 
 open System.Runtime.CompilerServices
 open Fabulous
@@ -109,9 +109,9 @@ type MapModifiers =
         this.AddScalar(ViewRefAttributes.ViewRef.WithValue(value.Unbox))
 
 [<Extension>]
-type CollectionBuilderExtensions =
+type MapCollectionBuilderExtensions =
     [<Extension>]
-    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> Fabulous.MauiControls.Maps.IFabMapElement>
+    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> IFabMapElement>
         (
             _: AttributeCollectionBuilder<'msg, 'marker, IMapElement>,
             x: WidgetBuilder<'msg, 'itemType>
@@ -119,7 +119,7 @@ type CollectionBuilderExtensions =
         { Widgets = MutStackArray1.One(x.Compile()) }
 
     [<Extension>]
-    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> Fabulous.MauiControls.Maps.IFabMapElement>
+    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> IFabMapElement>
         (
             _: AttributeCollectionBuilder<'msg, 'marker, IMapElement>,
             x: WidgetBuilder<'msg, Memo.Memoized<'itemType>>
@@ -128,7 +128,7 @@ type CollectionBuilderExtensions =
 
 
     [<Extension>]
-    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> Fabulous.MauiControls.Maps.IFabMapPin>
+    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> IFabMapPin>
         (
             _: CollectionBuilder<'msg, 'marker, IMapPin>,
             x: WidgetBuilder<'msg, Memo.Memoized<'itemType>>
@@ -136,9 +136,18 @@ type CollectionBuilderExtensions =
         { Widgets = MutStackArray1.One(x.Compile()) }
 
     [<Extension>]
-    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> Fabulous.MauiControls.Maps.IFabMapPin>
+    static member inline Yield<'msg, 'marker, 'itemType when 'itemType :> IFabMapPin>
         (
             _: CollectionBuilder<'msg, 'marker, IMapPin>,
             x: WidgetBuilder<'msg, 'itemType>
         ) : Content<'msg> =
+        { Widgets = MutStackArray1.One(x.Compile()) }
+       
+    // FIXME when Fabulous.MauiControls is updated
+    [<Extension>]
+    static member inline Yield(_: CollectionBuilder<'msg, #IFabTabbedPage, IFabPage>, x: WidgetBuilder<'msg, #IFabPage>) : Content<'msg> =
+        { Widgets = MutStackArray1.One(x.Compile()) }
+
+    [<Extension>]
+    static member inline Yield(_: CollectionBuilder<'msg, #IFabTabbedPage, IFabPage>, x: WidgetBuilder<'msg, Memo.Memoized<#IFabPage>>) : Content<'msg> =
         { Widgets = MutStackArray1.One(x.Compile()) }

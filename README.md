@@ -1,4 +1,4 @@
-## Maps for Fabulous.MauiControls
+**## Maps for Fabulous.MauiControls
 
 [![build](https://github.com/fsharp-mobile/Fabulous.MauiControls.Maps/actions/workflows/build.yml/badge.svg)](https://github.com/fsharp-mobile/Fabulous.MauiControls.Maps/actions/workflows/dotnet.yml) [![Fabulous.MauiControls.Maps NuGet version](https://badge.fury.io/nu/Fabulous.MauiControls.Maps.svg)](https://badge.fury.io/nu/Fabulous.MauiControls.Maps) [![Discord](https://img.shields.io/discord/716980335593914419?label=discord&logo=discord)](https://discord.gg/bpTJMbSSYK)
 
@@ -11,7 +11,7 @@ The Map control is a cross-platform view for displaying and annotating maps. You
 2. Add `.UseFabulousMaps()` to your `MauiProgram` after `.UseFabulousApp()`.
 
 ```f#
-open Fabulous.MauiControls.Maps
+open Fabulous.Maui.Maps
 
 type MauiProgram =
     static member CreateMauiApp() =
@@ -23,10 +23,10 @@ type MauiProgram =
             .Build()
 ```
 
-2. Open Fabulous.MauiControls.Maps at the top of the file where you declare your Fabulous program (eg. Program.stateful).
+2. Open Fabulous.Maui.Maps at the top of the file where you declare your Fabulous program (eg. Program.stateful).
 
 ```f#
-open Fabulous.MauiControls.Maps
+open Fabulous.Maui.Maps
 ```
 
 3. Depending on which platform you're targeting, you might need to do some configuration before the map widget will work. See "Initialization and Configuration" down below.
@@ -149,4 +149,4 @@ If you would like us to provide you with:
 - support services,
 - and consulting services.
 
-Feel free to contact us: [support@fabulous.dev](mailto:support@fabulous.dev)
+Feel free to contact us: [support@fabulous.dev](mailto:support@fabulous.dev)**

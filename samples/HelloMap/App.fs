@@ -5,7 +5,7 @@ open Microsoft.Maui.Controls.Maps
 open Microsoft.Maui.Devices.Sensors
 open Microsoft.Maui.Graphics
 open Microsoft.Maui.Maps
-open Fabulous.MauiControls.Maps
+open Fabulous.Maui.Maps
 open Fabulous.Maui
 
 open type Fabulous.Maui.View
@@ -64,15 +64,15 @@ module App =
                   Location(47.6414148, -122.1418647)
                   Location(47.6414654, -122.1432702) ]
             )
-                .strokeColor(Colors.Blue.ToFabColor())
+                .strokeColor(Colors.Blue)
                 .strokeWidth(12.)
         }
 
     let mapWihCircleElement () =
         Map(MapSpan(Location(37.79752, -122.40183), 0.01, 0.01)).mapElements() {
             MapCircle(Location(37.79752, -122.40183), Distance(250.))
-                .fillColor(Color.FromArgb("#88FFC0CB").ToFabColor())
-                .strokeColor(Color.FromArgb("#88FF0000").ToFabColor())
+                .fillColor(Color.FromArgb("#88FFC0CB"))
+                .strokeColor(Color.FromArgb("#88FF0000"))
                 .strokeWidth(8.)
         }
 
@@ -90,8 +90,8 @@ module App =
                   Location(47.6458676, -122.1356007) ]
             )
                 .strokeWidth(8.)
-                .fillColor(Colors.Red.ToFabColor())
-                .strokeColor(Colors.Blue.ToFabColor())
+                .fillColor(Colors.Red)
+                .strokeColor(Colors.Blue)
 
             MapPolygon(
                 [ Location(47.6458676, -122.1356007)
@@ -104,8 +104,8 @@ module App =
                   Location(47.6458676, -122.1356007) ]
             )
                 .strokeWidth(8.)
-                .fillColor(Colors.Yellow.ToFabColor())
-                .strokeColor(Colors.Black.ToFabColor())
+                .fillColor(Colors.Yellow)
+                .strokeColor(Colors.Black)
 
             MapPolygon(
                 [ Location(47.6381401, -122.1317367)
@@ -120,20 +120,19 @@ module App =
                   Location(47.6414654, -122.1432702) ]
             )
                 .strokeWidth(12.)
-                .strokeColor(Colors.Black.ToFabColor())
+                .strokeColor(Colors.Black)
         }
 
 
     let view (_: Model) =
         Application(
-            (TabbedPage("HelloMap") {
-                ContentPage("Region", mapWithRegion())
-                ContentPage("Pins", mapWithPins())
-                ContentPage("Circle", mapWihCircleElement())
-                ContentPage("Polyline", mapWithPolylineElement())
+            (TabbedPage() {
+                ContentPage(mapWithRegion()).title("Region")
+                ContentPage(mapWithPins()).title("Pins")
+                ContentPage(mapWihCircleElement()).title("Circle")
+                ContentPage(mapWithPolylineElement()).title("Polyline")
 
                 ContentPage(
-                    "Polygons",
                     mapWithPolygonElement()
                         .isZoomEnabled(true)
                         .isScrollEnabled(true)
@@ -141,7 +140,7 @@ module App =
                         .isShowingUser(true)
                         .isTrafficEnabled(true)
                         .onMapClicked(MapClicked)
-                )
+                ).title("Polygons")
             })
                 .ignoreSafeArea()
         )
