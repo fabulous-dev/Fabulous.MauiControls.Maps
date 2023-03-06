@@ -27,7 +27,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls.Maps" VersionOverride="7.0.59" />
-        <PackageReference Include="Fabulous.MauiControls" VersionOverride="[2.4.0, 3.0.0)" />
+        <PackageReference Include="Fabulous.MauiControls" VersionOverride="[2.5.0, 3.0.0)" />
         <PackageReference Include="FSharp.Core" VersionOverride="7.0.0" PrivateAssets="All" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     </ItemGroup>

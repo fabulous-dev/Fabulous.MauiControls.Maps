@@ -1,4 +1,4 @@
-**## Maps for Fabulous.MauiControls
+## Maps for Fabulous.MauiControls
 
 [![build](https://github.com/fsharp-mobile/Fabulous.MauiControls.Maps/actions/workflows/build.yml/badge.svg)](https://github.com/fsharp-mobile/Fabulous.MauiControls.Maps/actions/workflows/dotnet.yml) [![Fabulous.MauiControls.Maps NuGet version](https://badge.fury.io/nu/Fabulous.MauiControls.Maps.svg)](https://badge.fury.io/nu/Fabulous.MauiControls.Maps) [![Discord](https://img.shields.io/discord/716980335593914419?label=discord&logo=discord)](https://discord.gg/bpTJMbSSYK)
 
