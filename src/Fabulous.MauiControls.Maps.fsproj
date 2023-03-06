@@ -4,17 +4,26 @@
         <TargetFrameworks>net7.0;net7.0-ios;net7.0-android</TargetFrameworks>
         <UseMaui>true</UseMaui>
         <UseMauiCore>true</UseMauiCore>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+    <!-- NuGet Package -->
+    <PropertyGroup>
+        <Description>Maps implementation for Fabulous</Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageReadmeFile>PackageREADME.md</PackageReadmeFile>
-        <PackageIcon>nuget-icon.png</PackageIcon>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <VersionPrefix>2.1.0</VersionPrefix>
-        <RepositoryUrl>https://github.com/fsharp-mobile/Fabulous.MauiControls.Maps</RepositoryUrl>
-        <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
+        <NeutralLanguage>en-US</NeutralLanguage>
     </PropertyGroup>
 
+    <!-- SourceLink -->
+    <PropertyGroup>
+        <IncludeSymbols>true</IncludeSymbols>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(GITHUB_ACTIONS) == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
     <ItemGroup>
-        <None Include="PackageREADME.md" Pack="true" PackagePath="\" />
+        <None Include="README.md" Pack="true" PackagePath="\" />
         <None Include="../logo/nuget-icon.png" Pack="true" PackagePath="\" />
         <Compile Include="MapElement.fs" />
         <Compile Include="MapPolygon.fs" />
@@ -27,7 +36,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls.Maps" VersionOverride="7.0.59" />
-        <PackageReference Include="Fabulous.MauiControls" VersionOverride="[2.5.0, 3.0.0)" />
+        <PackageReference Include="Fabulous.MauiControls" VersionOverride="[2.4.0, 3.0.0)" />
         <PackageReference Include="FSharp.Core" VersionOverride="7.0.0" PrivateAssets="All" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     </ItemGroup>
