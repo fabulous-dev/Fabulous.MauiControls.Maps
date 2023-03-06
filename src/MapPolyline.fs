@@ -1,4 +1,4 @@
-﻿namespace Fabulous.MauiControls.Maps
+﻿namespace Fabulous.Maui.Maps
 
 open System.Runtime.CompilerServices
 open Fabulous

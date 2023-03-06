@@ -1,9 +1,10 @@
-﻿namespace Fabulous.MauiControls.Maps
+﻿namespace Fabulous.Maui.Maps
 
 open System.Runtime.CompilerServices
 open Fabulous
 open Fabulous.Maui
 open Microsoft.Maui.Controls.Maps
+open Microsoft.Maui.Graphics
 
 type IFabMapElement =
     inherit IFabElement
@@ -11,19 +12,16 @@ type IFabMapElement =
 module MapElement =
     let WidgetKey = Widgets.register<MapElement>()
 
-    let StrokeColor =
-        Attributes.defineBindableAppThemeColor MapElement.StrokeColorProperty
+    let StrokeColor = Attributes.defineBindableColor MapElement.StrokeColorProperty
 
     let StrokeWidth = Attributes.defineBindableFloat MapElement.StrokeWidthProperty
 
 [<Extension>]
 type MapElementModifiers =
     /// <summary>Set the line color. If is not specified the stroke will default to black.</summary>
-    /// <param name="light">The color of the line in the light theme.</param>
-    /// <param name="dark">The color of the line in the dark theme.</param>
     [<Extension>]
-    static member inline strokeColor(this: WidgetBuilder<'msg, #IFabMapElement>, light: FabColor, ?dark: FabColor) =
-        this.AddScalar(MapElement.StrokeColor.WithValue(AppTheme.create light dark))
+    static member inline strokeColor(this: WidgetBuilder<'msg, #IFabMapElement>, color: Color) =
+        this.AddScalar(MapElement.StrokeColor.WithValue(color))
 
     /// <summary>Sets the line width.</summary>
     [<Extension>]

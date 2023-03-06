@@ -1,10 +1,11 @@
-﻿namespace Fabulous.MauiControls.Maps
+﻿namespace Fabulous.Maui.Maps
 
 open System.Runtime.CompilerServices
 open Fabulous
 open Fabulous.Maui
 open Microsoft.Maui.Controls.Maps
 open Microsoft.Maui.Devices.Sensors
+open Microsoft.Maui.Graphics
 open Microsoft.Maui.Maps
 
 type IFabMapCircle =
@@ -17,7 +18,7 @@ module MapCircle =
 
     let Radius = Attributes.defineBindableWithEquality<Distance> Circle.RadiusProperty
 
-    let FillColor = Attributes.defineBindableAppThemeColor Circle.FillColorProperty
+    let FillColor = Attributes.defineBindableColor Circle.FillColorProperty
 
 [<AutoOpen>]
 module MapCircleBuilders =
@@ -36,8 +37,8 @@ type MapCircleModifiers =
     /// <param name="light">The color within the circle perimeter in the light theme.</param>
     /// <param name="dark">The color within the circle perimeter in the dark theme.</param>
     [<Extension>]
-    static member inline fillColor(this: WidgetBuilder<'msg, #IFabMapCircle>, light: FabColor, ?dark: FabColor) =
-        this.AddScalar(MapCircle.FillColor.WithValue(AppTheme.create light dark))
+    static member inline fillColor(this: WidgetBuilder<'msg, #IFabMapCircle>, color: Color) =
+        this.AddScalar(MapCircle.FillColor.WithValue(color))
 
     /// <summary>Link a ViewRef to access the direct Circle control instance</summary>
     [<Extension>]

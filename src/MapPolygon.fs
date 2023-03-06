@@ -1,4 +1,4 @@
-﻿namespace Fabulous.MauiControls.Maps
+﻿namespace Fabulous.Maui.Maps
 
 open System.Runtime.CompilerServices
 open Fabulous
@@ -7,6 +7,7 @@ open Fabulous.StackAllocatedCollections
 open Fabulous.StackAllocatedCollections.StackList
 open Microsoft.Maui.Controls.Maps
 open Microsoft.Maui.Devices.Sensors
+open Microsoft.Maui.Graphics
 
 type IFabMapPolygon =
     inherit IFabMapElement
@@ -14,7 +15,7 @@ type IFabMapPolygon =
 module MapPolygon =
     let WidgetKey = Widgets.register<Polygon>()
 
-    let FillColor = Attributes.defineBindableAppThemeColor Polygon.FillColorProperty
+    let FillColor = Attributes.defineBindableColor Polygon.FillColorProperty
 
     let GeoPathList =
         Attributes.defineSimpleScalarWithEquality<Location list> "Polygon_GeoPath" (fun _ newValueOpt node ->
@@ -40,11 +41,9 @@ module MapPolygonBuilders =
 [<Extension>]
 type MapPolygonModifiers =
     /// <summary>Set the polygon's background color. If is not specified the stroke will default to transparent.</summary>
-    /// <param name="light">The polygon's background color in the light theme.</param>
-    /// <param name="dark">The polygon's background color in the dark theme.</param>
     [<Extension>]
-    static member inline fillColor(this: WidgetBuilder<'msg, #IFabMapPolygon>, light: FabColor, ?dark: FabColor) =
-        this.AddScalar(MapPolygon.FillColor.WithValue(AppTheme.create light dark))
+    static member inline fillColor(this: WidgetBuilder<'msg, #IFabMapPolygon>, color: Color) =
+        this.AddScalar(MapPolygon.FillColor.WithValue(color))
 
     /// <summary>Link a ViewRef to access the direct Polygon control instance</summary>
     [<Extension>]
