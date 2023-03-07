@@ -149,4 +149,4 @@ If you would like us to provide you with:
 - support services,
 - and consulting services.
 
-Feel free to contact us: [support@fabulous.dev](mailto:support@fabulous.dev)**
+Feel free to contact us: [support@fabulous.dev](mailto:support@fabulous.dev)
